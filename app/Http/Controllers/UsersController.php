@@ -9,9 +9,10 @@ use App\Micropost;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(10);
+        
+        $users = User::where('name', 'like','%'. $request->keyword. '%')->paginate(10);
         
         return view('users.index', [
             'users' => $users,
