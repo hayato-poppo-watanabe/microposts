@@ -2,6 +2,9 @@
 <ul class="media-list">
 @foreach ($users as $user)
     <li class="media">
+        <aside class="col-xs-4">
+            @include('users.showprofile', ['users' => $users])
+        </aside>
         <div class="media-left">
             <img class="media-object img-rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
         </div>

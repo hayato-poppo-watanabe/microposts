@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','profile','birthday','web_link',
     ];
 
     /**
@@ -122,4 +122,9 @@ public function unfavorite($micropostId)
 public function beingfavorite($micropostId) {
     return $this->beingfavorites()->where('micropost_id', $micropostId)->exists();
 }
+
+/*public function profile($userId){
+    return $this->profile()->where('users_profile');
+}
+*/
 }   

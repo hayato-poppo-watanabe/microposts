@@ -76,4 +76,35 @@ class UsersController extends Controller
         return view('users.beingfavorite', $data);
     }
     
+    public function edit()
+    {
+        $user = \Auth::user();
+        
+
+        
+        return view('users.profile', [
+            'user' => $user,
+        ]);
+    }
+    
+    public function update(Request $request)
+    {
+        $user = \Auth::user();
+
+         $this->validate($request, [
+            'profile' => 'max:144',
+            'birthday' =>'date_format:Y-m-d',
+            'web_link' => 'max:255',
+        
+        ]);
+
+        $user->profile = $request->profile;
+        $user->birthday = $request->birthday;
+        $user->web_link = $request->web_link;
+        $user->save();
+        
+       // return view('users.show', ['user' => $user]);
+        return redirect('users/'. $user->id);
+    }
+    
 }
